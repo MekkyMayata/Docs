@@ -43,3 +43,9 @@ chown -R jenkins:jenkins /home/jenkins/.kube
 ```sh
 helm init --service-account tiller
 ```
+## N.B - if above command fails, follow steps below
+- Helm versions prior to 2.17.0 have the deprecated https://kubernetes-charts.storage.googleapis.com/index.yaml as the default stable repository, which no longer resolves. The new repo is https://charts.helm.sh/stable.
+```sh
+helm init --stable-repo-url https://charts.helm.sh/stable --service-account tiller
+helm init --override spec.selector.matchLabels.'name'='tiller',spec.selector.matchLabels.'app'='helm' --output yaml | sed 's@apiVersion: extensions/v1beta1@apiVersion: apps/v1@' | kubectl apply -f -
+```
