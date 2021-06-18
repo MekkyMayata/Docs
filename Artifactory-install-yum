@@ -1,0 +1,15 @@
+### Jenkins server setup with Helm to deploy into Kubernetes cluster
+
+## Download and Install helm 
+```sh
+curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 > get_helm.sh
+chmod 700 get_helm.sh
+./get_helm.sh -v v2.16.1
+```
+# Setup Jfrog Artifactory
+
+1. Java install
+```sh
+yum install java-1.8*
+```
+2. install package. If wget fails replace link with the one on (jfrog-artifactory)[https://jfrog.com/open-source/]
